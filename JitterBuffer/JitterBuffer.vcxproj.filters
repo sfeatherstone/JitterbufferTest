@@ -33,12 +33,48 @@
     <ClInclude Include="IJitterbuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IJitterBufferImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FragmentStore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnrenderedFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompressedFrameSink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnCompressedFrameSink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IFrameSinkImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IFrameSink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IJitterbuffer.cpp">
+    <ClCompile Include="IJitterBufferImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FragmentStore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompressedFrameSink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnCompressedFrameSink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IFrameSinkImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

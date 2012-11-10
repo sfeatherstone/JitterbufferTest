@@ -76,18 +76,30 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompressedFrameSink.h" />
+    <ClInclude Include="FragmentStore.h" />
+    <ClInclude Include="common.h" />
     <ClInclude Include="IDecoder.h" />
+    <ClInclude Include="IFrameSink.h" />
+    <ClInclude Include="IFrameSinkImpl.h" />
+    <ClInclude Include="IJitterBufferImpl.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IJitterbuffer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UnCompressedFrameSink.h" />
+    <ClInclude Include="UnrenderedFrame.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="IJitterbuffer.cpp" />
+    <ClCompile Include="CompressedFrameSink.cpp" />
+    <ClCompile Include="FragmentStore.cpp" />
+    <ClCompile Include="IFrameSinkImpl.cpp" />
+    <ClCompile Include="IJitterBufferImpl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UnCompressedFrameSink.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

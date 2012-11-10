@@ -1,12 +1,12 @@
 #pragma once
 
-#include "IDecoder.h"
-#include "IRenderer.h"
+#include "IJitterBuffer.h"
+#include "FragmentStore.h"
 
-class IJitterBuffer
+class IJitterBufferImpl : public IJitterBuffer
 {
 public:
-	IJitterBuffer(IDecoder* decoder, IRenderer* renderer);
+	IJitterBufferImpl(IDecoder* decoder, IRenderer* renderer);
 
 	/*
 	Should copy the given buffer, as it may be deleted/reused immediately following this call.
@@ -21,7 +21,11 @@ public:
 		int length, 
 		int frameNumber, 
 		int fragmentNumber, 
-		int numFragmentsInThisFrame) = 0;
+		int numFragmentsInThisFrame) override;
 
-	~IJitterBuffer() {}
+	~IJitterBufferImpl() {}
+private:
+	std::shared_ptr<FragmentStore> fragmentStore_;
+	std::shared_ptr<IFrameSink>	compressedFrameSink_;
+	std::shared_ptr<IFrameSink> unCompressedFrameSink_;
 };

@@ -27,6 +27,15 @@
     <ClInclude Include="MockJitterbufferSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TestRendererImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestDecoderImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestOrderedFrameDelevery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -39,6 +48,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="JitterbufferTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnrenderedFrameTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FragmentStoreTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestRendererImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestDecoderImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestOrderedFrameDelevery.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

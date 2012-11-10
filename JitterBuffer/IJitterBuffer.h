@@ -6,7 +6,7 @@
 class IJitterBuffer
 {
 public:
-	IJitterBuffer(IDecoder* decoder, IRenderer* renderer);
+	//IJitterBuffer(IDecoder* decoder, IRenderer* renderer);
 
 	/*
 	Should copy the given buffer, as it may be deleted/reused immediately following this call.
