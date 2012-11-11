@@ -5,20 +5,54 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JitterbufferTestHarness", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JitterBuffer", "JitterBuffer\JitterBuffer.vcxproj", "{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clock", "Clock\Clock.csproj", "{33F0617B-69E8-49F0-8EA5-DE566CA6C741}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
+		Debug|x86 = Debug|x86
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Debug|Win32.ActiveCfg = Debug|Win32
 		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Debug|Win32.Build.0 = Debug|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Debug|x86.ActiveCfg = Debug|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Debug|x86.Build.0 = Debug|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Release|Win32.ActiveCfg = Release|Win32
 		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Release|Win32.Build.0 = Release|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Release|x86.ActiveCfg = Release|Win32
+		{183BB5E9-5C1D-44B2-9973-BEBED3264B82}.Release|x86.Build.0 = Release|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Debug|Win32.Build.0 = Debug|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Debug|x86.ActiveCfg = Debug|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Debug|x86.Build.0 = Debug|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Release|Win32.ActiveCfg = Release|Win32
 		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Release|Win32.Build.0 = Release|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Release|x86.ActiveCfg = Release|Win32
+		{DEEFCE4D-6EB8-4DDC-97AA-DFC971BF1A0D}.Release|x86.Build.0 = Release|Win32
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Debug|Win32.ActiveCfg = Debug|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Debug|Win32.Build.0 = Debug|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Debug|x86.ActiveCfg = Debug|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Debug|x86.Build.0 = Debug|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Release|Mixed Platforms.Build.0 = Release|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Release|Win32.ActiveCfg = Release|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Release|Win32.Build.0 = Release|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Release|x86.ActiveCfg = Release|x86
+		{33F0617B-69E8-49F0-8EA5-DE566CA6C741}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

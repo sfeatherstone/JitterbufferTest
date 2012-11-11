@@ -1,5 +1,7 @@
 #pragma once
 
+#include <windows.h>
+
 #include "..\JitterBuffer\IRenderer.h"
 #include "TestOrderedFrameDelevery.h"
 
@@ -12,7 +14,11 @@ public:
 	virtual void RenderFrame(const char* buffer, int length) override
 	{
 		AddFrame(buffer,length);
+		DWORD cbWritten;
+		WriteFile(pipe_, buffer, 8, &cbWritten, NULL);
 	}
+private:
+	HANDLE pipe_;
 };
 
 

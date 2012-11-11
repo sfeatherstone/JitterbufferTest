@@ -3,7 +3,7 @@
 #include "IFrameSinkImpl.h"
 #include "IRenderer.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
-
+#include <chrono>
 
 class UnCompressedFrameSink : public IFrameSinkImpl
 {
@@ -16,6 +16,8 @@ protected:
 
 private:
 	IRenderer * renderer_;
-	//boost::posix_time::ptime 
+	std::chrono::time_point<std::chrono::system_clock> nextFrameRenderedDue_;
+	std::chrono::microseconds	idealTimePeriod_;
+	std::chrono::microseconds	currentTimePeriod_;
 };
 

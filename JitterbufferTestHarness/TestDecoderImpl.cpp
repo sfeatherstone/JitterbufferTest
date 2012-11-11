@@ -1,5 +1,5 @@
 #include "TestDecoderImpl.h"
-
+#include <cctype>
 
 TestDecoderImpl::TestDecoderImpl(void)
 {

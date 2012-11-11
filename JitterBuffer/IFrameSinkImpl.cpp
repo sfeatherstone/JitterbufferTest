@@ -45,6 +45,7 @@ void IFrameSinkImpl::run()
 		{
 			ProcessFrame(i->first,i->second.first, i->second.second );
 			frames_.erase(i);
+			++nextFrame_;
 		}
 	}
 };

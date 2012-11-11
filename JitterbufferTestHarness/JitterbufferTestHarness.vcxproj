@@ -81,18 +81,25 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IFrameSinkTestImpl.h" />
+    <ClInclude Include="JitterBufferTestSource.h" />
     <ClInclude Include="MockJitterbufferSource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestDecoderImpl.h" />
+    <ClInclude Include="TestHelpers.h" />
     <ClInclude Include="TestOrderedFrameDelevery.h" />
     <ClInclude Include="TestRendererImpl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BigTests.cpp" />
+    <ClCompile Include="CompressedFrameSinkTests.cpp" />
     <ClCompile Include="FragmentStoreTests.cpp" />
     <ClCompile Include="JitterbufferTestHarness.cpp" />
     <ClCompile Include="JitterbufferTests.cpp" />
+    <ClCompile Include="JitterBufferTestSource.cpp" />
     <ClCompile Include="MockJitterbufferSource.cpp" />
+    <ClCompile Include="UnCompressedFrameSinkTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
