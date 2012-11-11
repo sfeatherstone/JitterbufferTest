@@ -1,16 +1,16 @@
 #include "stdafx.h"
-#include "..\JitterBuffer\CompressedFrameSink.h"
+#include "..\JitterBuffer\PreDecodeFrameSink.h"
 
 #include "IFrameSinkTestImpl.h"
 #include "TestDecoderImpl.h"
 #include "TestHelpers.h"
 
 
-BOOST_AUTO_TEST_CASE(CompressedFrameSinkPassesThreeFrames)
+BOOST_AUTO_TEST_CASE(PreDecodeFrameSinkPassesThreeFrames)
 {
 	TestDecoderImpl decoder;
 	auto testSink = std::make_shared<IFrameSinkTestImpl>();
-	auto sink = std::make_shared<CompressedFrameSink>(&decoder, testSink);
+	auto sink = std::make_shared<PreDecodeFrameSink>(&decoder, testSink);
 
 	char *buffer = "0000-12345678890";
 	char *buffer1 = "0001-12345678890";
@@ -33,11 +33,11 @@ BOOST_AUTO_TEST_CASE(CompressedFrameSinkPassesThreeFrames)
 	BOOST_REQUIRE(!memcmp(expectedResult.c_str(),sink->buffer_.get(),sink->lengthOfBuffer_));*/
 }
 
-BOOST_AUTO_TEST_CASE(CompressedFrameSinkPassesThreeFramesOutOfOrder)
+BOOST_AUTO_TEST_CASE(PreDecodeFrameSinkPassesThreeFramesOutOfOrder)
 {
 	TestDecoderImpl decoder;
 	auto testSink = std::make_shared<IFrameSinkTestImpl>();
-	auto sink = std::make_shared<CompressedFrameSink>(&decoder, testSink);
+	auto sink = std::make_shared<PreDecodeFrameSink>(&decoder, testSink);
 
 	char *buffer = "0000-12345678890";
 	char *buffer1 = "0001-12345678890";

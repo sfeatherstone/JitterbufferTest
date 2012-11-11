@@ -42,19 +42,19 @@
     <ClInclude Include="UnrenderedFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CompressedFrameSink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UnCompressedFrameSink.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IFrameSinkImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IFrameSink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PreRenderFrameSink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PreDecodeFrameSink.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,13 +68,13 @@
     <ClCompile Include="FragmentStore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CompressedFrameSink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UnCompressedFrameSink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IFrameSinkImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreRenderFrameSink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreDecodeFrameSink.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

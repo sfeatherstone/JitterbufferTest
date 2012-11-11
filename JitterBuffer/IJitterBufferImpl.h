@@ -26,6 +26,6 @@ public:
 	~IJitterBufferImpl() {}
 private:
 	std::shared_ptr<FragmentStore> fragmentStore_;
-	std::shared_ptr<IFrameSink>	compressedFrameSink_;
-	std::shared_ptr<IFrameSink> unCompressedFrameSink_;
+	std::shared_ptr<IFrameSink>	PreDecodeFrameSink_;
+	std::shared_ptr<IFrameSink> PreRenderFrameSink_;
 };

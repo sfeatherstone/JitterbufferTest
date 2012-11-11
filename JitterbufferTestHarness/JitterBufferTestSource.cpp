@@ -1,4 +1,5 @@
 #include "JitterBufferTestSource.h"
+#include "TestHelpers.h"
 #include <thread>
 #include <random>
 #include <iostream>
@@ -46,3 +47,17 @@ void JitterBufferTestSource::run(IJitterBuffer * buffer)
 	}
 };
 
+LengthBufferPair JitterBufferTestSource::getFrame(int frameNo)
+{
+	std::string total;
+
+	int fragments = (frameNo % 7) + 1;
+	for(int frag = 0; frag < fragments; frag++)
+	{
+		total.append( (boost::format("%06d%02dHello World - Welcome to my video data") 
+			% frameNo % frag).str());
+	}
+
+	return BufferToLengthBufferPair(total.c_str());
+
+};

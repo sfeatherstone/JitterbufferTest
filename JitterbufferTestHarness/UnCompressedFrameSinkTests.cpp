@@ -1,15 +1,15 @@
 #include "stdafx.h"
-#include "..\JitterBuffer\UnCompressedFrameSink.h"
+#include "..\JitterBuffer\PreRenderFrameSink.h"
 
 #include "IFrameSinkTestImpl.h"
 #include "TestRendererImpl.h"
 #include "TestHelpers.h"
 
 
-BOOST_AUTO_TEST_CASE(UnCompressedFrameSinkPassesThreeFrames)
+BOOST_AUTO_TEST_CASE(PreRenderFrameSinkPassesThreeFrames)
 {
 	TestRendererImpl renderer;
-	auto sink = std::make_shared<UnCompressedFrameSink>(&renderer);
+	auto sink = std::make_shared<PreRenderFrameSink>(&renderer);
 
 	char *buffer = "0000-12345678890";
 	char *buffer1 = "0001-12345678890";
@@ -28,10 +28,10 @@ BOOST_AUTO_TEST_CASE(UnCompressedFrameSinkPassesThreeFrames)
 
 }
 
-BOOST_AUTO_TEST_CASE(UnCompressedFrameSinkPassesThreeFramesOutOfOrder)
+BOOST_AUTO_TEST_CASE(PreRenderFrameSinkPassesThreeFramesOutOfOrder)
 {
 	TestRendererImpl renderer;
-	auto sink = std::make_shared<UnCompressedFrameSink>(&renderer);
+	auto sink = std::make_shared<PreRenderFrameSink>(&renderer);
 
 	char *buffer = "0000-12345678890";
 	char *buffer1 = "0001-12345678890";

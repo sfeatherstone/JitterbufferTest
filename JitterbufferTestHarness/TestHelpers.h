@@ -12,3 +12,11 @@ inline boost::shared_array<char> BufferToArray(const char * buffer)
 	return ret;
 }
 
+#include "..\Jitterbuffer\Common.h"
+
+inline LengthBufferPair BufferToLengthBufferPair(const char * buffer)
+{
+	return std::make_pair(strlen(buffer),BufferToArray(buffer));
+}
+
+

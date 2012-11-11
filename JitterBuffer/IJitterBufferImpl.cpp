@@ -1,14 +1,14 @@
 #include "stdafx.h"
 #include "IJitterBufferImpl.h"
-#include "CompressedFrameSink.h"
-#include "UnCompressedFrameSink.h"
+#include "PreDecodeFrameSink.h"
+#include "PreRenderFrameSink.h"
 
 
 IJitterBufferImpl::IJitterBufferImpl(IDecoder* decoder, IRenderer* renderer)
 {
-	unCompressedFrameSink_ = std::make_shared<UnCompressedFrameSink>(renderer);
-	compressedFrameSink_ = std::make_shared<CompressedFrameSink>(decoder, unCompressedFrameSink_);
-	fragmentStore_ = std::make_shared<FragmentStore>(compressedFrameSink_);
+	PreRenderFrameSink_ = std::make_shared<PreRenderFrameSink>(renderer);
+	PreDecodeFrameSink_ = std::make_shared<PreDecodeFrameSink>(decoder, PreRenderFrameSink_);
+	fragmentStore_ = std::make_shared<FragmentStore>(PreDecodeFrameSink_);
 }
 
 void IJitterBufferImpl::ReceivePacket(

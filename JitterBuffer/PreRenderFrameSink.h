@@ -5,11 +5,11 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <chrono>
 
-class UnCompressedFrameSink : public IFrameSinkImpl
+class PreRenderFrameSink : public IFrameSinkImpl
 {
 public:
-	UnCompressedFrameSink(IRenderer * renderer);
-	~UnCompressedFrameSink(void);
+	PreRenderFrameSink(IRenderer * renderer);
+	~PreRenderFrameSink(void);
 
 protected:
 	virtual void ProcessFrame(int frameNo, int lengthOfBuffer, boost::shared_array<char> buffer) override;
