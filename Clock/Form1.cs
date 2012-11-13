@@ -30,12 +30,15 @@ namespace Clock3CS
     private bool b24Hours = false;    // 24 hour clock face?
     private DateTime currentTime;    // used in more than one method
 
+    public DateTime lastUpdate;
+
     // new
     private int xCenter;        // center of the clock
     private int yCenter;
     private static int DateRadius = 600; // outer circumference for date
     private static int Offset = 0;    // for moving the text 
-    Font font = new Font("Arial", 40);  // use the same font throughout
+    Font font = new Font("Arial", 40);
+    private Label labelTime;  // use the same font throughout
     private StringDraw sdToday;      // the text to animate
 
     public ClockFace()
@@ -92,12 +95,23 @@ namespace Clock3CS
 
     public void Animate()
     {
+
         Graphics g = this.CreateGraphics();
 
         SetScale(g);
         DrawFace(g);
         DrawTime(g, false);
         DrawDate(g);
+        if (lastUpdate != null)
+        {
+            int diff = (DateTime.Now - lastUpdate).Milliseconds;
+            labelTime.Text = diff.ToString();
+            lastUpdate = DateTime.Now;
+        }
+        else
+        {
+            lastUpdate = DateTime.Now;
+        }
         g.Dispose();
     }
 
@@ -122,27 +136,28 @@ namespace Clock3CS
     /// </summary>
     private void InitializeComponent()
     {
-//      this.btnClockFormat = new System.Windows.Forms.Button();
-      this.SuspendLayout();
-      // 
-      // btnClockFormat
-      // 
-/*      this.btnClockFormat.Location = new System.Drawing.Point(8, 8);
-      this.btnClockFormat.Name = "btnClockFormat";
-      this.btnClockFormat.TabIndex = 1;
-      this.btnClockFormat.Text = "24 Hours";
-      this.btnClockFormat.Click += new System.EventHandler(this.btnClockFormat_Click);*/
-      // 
-      // ClockFace
-      // 
-      this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-      this.ClientSize = new System.Drawing.Size(292, 266);
-/*      this.Controls.AddRange(new System.Windows.Forms.Control[] {
-                                      this.btnClockFormat});*/
-      this.Name = "ClockFace";
-      this.Text = "Clock3CS";
-      this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClockFace_MouseDown);
-      this.ResumeLayout(false);
+            this.labelTime = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // labelTime
+            // 
+            this.labelTime.AutoSize = true;
+            this.labelTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTime.Location = new System.Drawing.Point(3, 3);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(0, 20);
+            this.labelTime.TabIndex = 0;
+            // 
+            // ClockFace
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this.labelTime);
+            this.Name = "ClockFace";
+            this.Text = "Clock3CS";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClockFace_MouseDown);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
     }
     #endregion
@@ -200,7 +215,12 @@ namespace Clock3CS
       }  // end for loop*/
     }    // end drawFace
 
-    
+    private void DrawTimeDiff(Graphics g, int delay)
+    {
+        var font = new Font("Microsoft Sans Serif", 8.25F);
+            var text = delay.ToString();
+            g.DrawString(text, font, Brushes.Black, 0, 0);
+    }
     private void DrawTime(Graphics g, bool forceDraw)
     {
 

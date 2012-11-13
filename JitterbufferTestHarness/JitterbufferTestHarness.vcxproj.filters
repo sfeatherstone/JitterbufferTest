@@ -24,9 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MockJitterbufferSource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TestRendererImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -53,13 +50,7 @@
     <ClCompile Include="JitterbufferTestHarness.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MockJitterbufferSource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="JitterbufferTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UnrenderedFrameTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FragmentStoreTests.cpp">
@@ -77,13 +68,16 @@
     <ClCompile Include="CompressedFrameSinkTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UnCompressedFrameSinkTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BigTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="JitterBufferTestSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreRenderedFrameSinkTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreDecodedFrameTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

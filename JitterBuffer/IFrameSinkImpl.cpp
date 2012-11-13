@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "IFrameSinkImpl.h"
-
+#include <queue>
 
 IFrameSinkImpl::IFrameSinkImpl (void):_runLoop(true),nextFrame_(0)
 {
@@ -21,6 +21,7 @@ IFrameSinkImpl::~IFrameSinkImpl (void)
 
 void IFrameSinkImpl::Frame(int frameNo, int lengthOfBuffer, boost::shared_array<char> buffer) 
 {
+	// Lock, store, notify other thread
 	boost::unique_lock<boost::mutex> lock(conditionLock_);
 	frames_[frameNo] = std::make_pair(lengthOfBuffer, buffer);
 	if (frameNo==nextFrame_)
@@ -33,20 +34,40 @@ void IFrameSinkImpl::run()
 {
 	while (_runLoop)
 	{
-		boost::unique_lock<boost::mutex> lock(conditionLock_);
-		auto i = frames_.find(nextFrame_);
-		if (i == frames_.end())
+		std::queue<std::pair<int,LengthBufferPair>> readyForProcessesingFrames;
+
 		{
-			condition_.wait(lock);
+			//Lock access to frames_
+			boost::unique_lock<boost::mutex> lock(conditionLock_);
+
+			auto i = frames_.find(nextFrame_);
+
+			if (i == frames_.end())
+			{
+				//Release lock and wait for signal.
+				condition_.wait(lock);
+			}
+
+			//Move all complete in order frames to queue
+			i = frames_.find(nextFrame_);
+			if (i != frames_.end())
+			{
+				ProcessFrame(i->first,i->second.first, i->second.second );
+				frames_.erase(i);
+				++nextFrame_;
+			}
+
 		}
 
-		i = frames_.find(nextFrame_);
-		if (i != frames_.end())
+		//This can be blocked, but the lock is now released to the sink can receive frames again
+		while (readyForProcessesingFrames.size() && _runLoop)
 		{
-			ProcessFrame(i->first,i->second.first, i->second.second );
-			frames_.erase(i);
-			++nextFrame_;
+			ProcessFrame(readyForProcessesingFrames.front().first,
+				readyForProcessesingFrames.front().second.first, 
+				readyForProcessesingFrames.front().second.second );
+			readyForProcessesingFrames.pop();
 		}
+
 	}
 };
 

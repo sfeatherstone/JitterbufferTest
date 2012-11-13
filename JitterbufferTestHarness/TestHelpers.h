@@ -1,7 +1,7 @@
 #pragma once
 
 #include <boost\thread.hpp>
-#define SLEEP(x) boost::this_thread::sleep(boost::posix_time::milliseconds(x));
+#define SLEEP(x) boost::this_thread::sleep(boost::posix_time::milliseconds(0));boost::this_thread::sleep(boost::posix_time::milliseconds(x));
 
 #include <boost\shared_array.hpp>
 

@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(BigTest1000Frames)
 		SLEEP(20);
 	}
 
-	for (int i = 0;i<1000;i++)
+	for (int i = 0;i<framesToTest;i++)
 	{
 		auto originalFrame = source.getFrame(i);
 		auto decodedFrame = decoder.decodeFrame(originalFrame.second.get(), originalFrame.first);

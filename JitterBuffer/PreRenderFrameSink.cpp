@@ -8,8 +8,8 @@
 PreRenderFrameSink::PreRenderFrameSink(IRenderer * renderer):
 	renderer_(renderer)
 {
-	nextFrameRenderedDue_ = std::chrono::system_clock::now();
-	idealTimePeriod_ = currentTimePeriod_ = std::chrono::microseconds(33333);
+	idealTimePeriod_ = boost::posix_time::microseconds(33333);
+	secondsToRecordForLongestDelay_ = 10;
 }
 
 PreRenderFrameSink::~PreRenderFrameSink()
@@ -19,27 +19,60 @@ PreRenderFrameSink::~PreRenderFrameSink()
 
 void PreRenderFrameSink::ProcessFrame(int frameNo, int lengthOfBuffer, boost::shared_array<char> buffer)
 {
-	auto now = std::chrono::system_clock::now();
-	if (now > nextFrameRenderedDue_)
+	//Get now just once
+	auto now = boost::posix_time::microsec_clock::universal_time();
+	if (frameNo == 0)
 	{
-		//Change delay
-		typedef std::chrono::duration<std::chrono::system_clock::rep, std::chrono::system_clock::period> PeriodType;
-		auto delay = now - nextFrameRenderedDue_ ;
-		//What do we need to create the delay to get it back 2 30fps in 5 secs?
-		auto delayCount = delay.count();// * PeriodType::period::num/PeriodType::period::den;
-		auto fiveSecsCount = 5 * (PeriodType::period::den / PeriodType::period::num);
-		auto timeTofix = fiveSecsCount - delayCount;
-		auto countsPerFrameDelay = timeTofix / (30 * 5);
-		//Limit to 60fps
-		countsPerFrameDelay = std::max(static_cast<long long>((PeriodType::period::den / PeriodType::period::num)/60), countsPerFrameDelay);
-		currentTimePeriod_ = std::chrono::duration_cast<std::chrono::microseconds>(PeriodType(countsPerFrameDelay));
-		std::cout << " fps:" << (PeriodType::period::den / PeriodType::period::num)/countsPerFrameDelay<< " delay:"<<delayCount << " ttf:"<< timeTofix;
+		firstFrameRendered_  = now;
+	}
+
+	//Record time that this frame should be played out as duration from first frame (frames * (1/30)sec) + longestDelay
+	boost::posix_time::time_duration expectedDelay = boost::posix_time::microseconds(idealTimePeriod_.total_microseconds() * frameNo) + currentLagDelay_;
+
+	//Record delay from first frame to now
+	boost::posix_time::time_duration currentDelay = now - firstFrameRendered_;
+
+	//Get difference between two. How much later are we than we expected to be (but keep it positive)
+	boost::posix_time::time_duration overdueDelayToRecord = 
+		std::max(boost::posix_time::time_duration(),currentDelay-expectedDelay);
+
+	//Add the delay to the our running maximum delay
+	recentDelays_.push_front(overdueDelayToRecord);
+	if (recentDelays_.size()>(30*secondsToRecordForLongestDelay_))
+	{
+		recentDelays_.pop_back();
+	}
+
+	//Find Longest delay
+	boost::posix_time::time_duration longestDuration;
+	for (auto duration : recentDelays_)
+	{
+		longestDuration = std::max(longestDuration, duration);
+	}
+
+	//If the longest delay is now smaller than than what is stored in our recentDelays_, start slowly shortening the delay
+	if (currentLagDelay_ > longestDuration)
+	{
+		//Shrinks slowly
+		currentLagDelay_ -= boost::posix_time::milliseconds(5);
 	}
 	else
 	{
-		std::this_thread::sleep_until(nextFrameRenderedDue_);
+		//Grows fast
+/*		if (currentLagDelay_ < longestDuration)
+		{
+			std::cout << "late:" << boost::posix_time::to_simple_string(currentLagDelay_) 
+				<< "->"<<boost::posix_time::to_simple_string(longestDuration);
+		}*/
+		currentLagDelay_ = longestDuration;
 	}
 
+	//Are we still early?
+	if (currentDelay < expectedDelay)
+	{
+		//Delay amount of time to take us to expected time
+		boost::this_thread::sleep(expectedDelay-currentDelay);
+	}
+	
 	renderer_->RenderFrame(buffer.get(),lengthOfBuffer);
-	nextFrameRenderedDue_ = now + currentTimePeriod_;
 }

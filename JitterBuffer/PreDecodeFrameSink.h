@@ -4,7 +4,7 @@
 #include "IDecoder.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
 
-
+//This receives compressed frames from the FragmentStore. It decodes and sends on to PreRenderFrameSink
 class PreDecodeFrameSink : public IFrameSinkImpl
 {
 public:
@@ -16,6 +16,5 @@ protected:
 private:
 	IDecoder * decoder_;	
 	IFrameSink::wptr renderSink_;
-	//boost::posix_time::ptime 
 };
 

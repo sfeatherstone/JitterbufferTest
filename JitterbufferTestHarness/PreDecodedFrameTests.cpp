@@ -1,15 +1,14 @@
 #include "stdafx.h"
-#include "..\JitterBuffer\PreRenderFrameSink.h"
-
+#include "..\JitterBuffer\PreDecodeFrameSink.h"
+#include "TestDecoderImpl.h"
 #include "IFrameSinkTestImpl.h"
-#include "TestRendererImpl.h"
 #include "TestHelpers.h"
 
-
-BOOST_AUTO_TEST_CASE(PreRenderFrameSinkPassesThreeFrames)
+BOOST_AUTO_TEST_CASE(PreDecodedFrameSinkPassesThreeFrames)
 {
-	TestRendererImpl renderer;
-	auto sink = std::make_shared<PreRenderFrameSink>(&renderer);
+	TestDecoderImpl renderer;
+	auto testSink = std::make_shared<IFrameSinkTestImpl>();
+	auto sink = std::make_shared<PreDecodeFrameSink>(&renderer,testSink);
 
 	char *buffer = "0000-12345678890";
 	char *buffer1 = "0001-12345678890";
@@ -28,10 +27,11 @@ BOOST_AUTO_TEST_CASE(PreRenderFrameSinkPassesThreeFrames)
 
 }
 
-BOOST_AUTO_TEST_CASE(PreRenderFrameSinkPassesThreeFramesOutOfOrder)
+BOOST_AUTO_TEST_CASE(PreDecodedFrameSinkPassesThreeFramesOutOfOrder)
 {
-	TestRendererImpl renderer;
-	auto sink = std::make_shared<PreRenderFrameSink>(&renderer);
+	TestDecoderImpl renderer;
+	auto testSink = std::make_shared<IFrameSinkTestImpl>();
+	auto sink = std::make_shared<PreDecodeFrameSink>(&renderer,testSink);
 
 	char *buffer = "0000-12345678890";
 	char *buffer1 = "0001-12345678890";
@@ -51,3 +51,17 @@ BOOST_AUTO_TEST_CASE(PreRenderFrameSinkPassesThreeFramesOutOfOrder)
 	BOOST_REQUIRE( renderer.size() == 3 );
 
 }
+/*
+BOOST_AUTO_TEST_CASE(PreRenderFrameSinkFastTestForNonBlocking)
+{
+	TestDecoderImpl renderer;
+	auto testSink = std::make_shared<IFrameSinkTestImpl>(40);
+	auto sink = std::make_shared<PreDecodeFrameSink>(&renderer,testSink);
+
+	char *buffer = "0000-12345678890";
+	for (int i = 0;i<1000;i++)
+	{
+		sink->Frame(i, strlen(buffer), BufferToArray(buffer));
+	}
+	std::cout << " "<< testSink->allFrames_.size();
+}*/

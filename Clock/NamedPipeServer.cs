@@ -31,6 +31,7 @@ namespace CSNamedPipe
 
         public const uint DUPLEX = (0x00000003);
         public const uint FILE_FLAG_OVERLAPPED = (0x40000000);
+        
 
         public class Client
         {

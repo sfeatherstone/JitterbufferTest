@@ -14,6 +14,7 @@ PreDecodeFrameSink::~PreDecodeFrameSink()
 
 void PreDecodeFrameSink::ProcessFrame(int frameNo, int lengthOfBuffer, boost::shared_array<char> buffer)
 {
+	//Creat buffer of 1mb for uncompressed image.
 	boost::shared_array<char> outBuffer(new char[0x100000]);
 	int frameSize = decoder_->DecodeFrame(buffer.get(), lengthOfBuffer, outBuffer.get());
 	if (auto sp = renderSink_.lock())
